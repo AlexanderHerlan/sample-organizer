@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Music Sample Organizer</title>
+        <link rel="stylesheet" href="style/normalize.css">
+        <link rel="stylesheet" href="style/skeleton.css">
+        <link rel="stylesheet" href="style/main.css">
+
+        <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+        <!-- Include eel.js - note this file doesn't exist in the 'web' directory -->
+        <script type="text/javascript" src="/eel.js"></script>
+        <script type="text/javascript" src="/js/main.js"></script>
+    </head>
+
+    <body>
+        <h1>Music Sample Organizer v0.1</h1>
+        <hr />
+        <div id="configuration" class="container">
+
+            <h2>Main Settings</h2>
+            <label for="main-working_dir">Choose where your samples are located:</label>
+            <br />
+            <input type="text" id="main-working_dir" onclick="select_directory()">
+            <button class="items" id="directory_picker" name="directory_picker" onclick="select_directory()">Choose Directory</button>
+
+            <input type="checkbox" name="main-debug_mode" id="main-debug_mode" value="true" checked onclick="save_setting('MAIN', 'debug_mode', document.getElementById('main-debug_mode').checked)">
+            <label for="main-debug_mode">Debug Mode</label>
+            <br />
+            <input type="checkbox" name="main-dry_run" id="main-dry_run" value="true" checked onclick="save_setting('MAIN', 'dry_run', document.getElementById('main-dry_run').checked)">
+            <label for="main-dry_run">Dry run?</label>
+            <br />
+            <input type="checkbox" name="main-recursive" id="main-recursive" value="true" checked onclick="save_setting('MAIN', 'recursive', document.getElementById('main-recursive').checked)">
+            <label for="main-recursive">Recursive Mode</label>
+            <br />
+            <input type="checkbox" name="main-capitalize_words_in_files" id="main-capitalize_words_in_files" value="true" checked onclick="save_setting('MAIN', 'capitalize_words_in_files', document.getElementById('main-capitalize_words_in_files').checked)">
+            <label for="main-capitalize_words_in_files">Capitalize Words in Files</label>
+            <br />
+            <input type="checkbox" name="main-capitalize_words_in_dirs" id="main-capitalize_words_in_dirs" value="true" checked onclick="save_setting('MAIN', 'capitalize_words_in_dirs', document.getElementById('main-capitalize_words_in_dirs').checked)">
+            <label for="main-capitalize_words_in_dirs">Capitalize Words in Directories</label>
+            <br />
+
+            <hr />
+            <h2>Ignore Settings</h2>
+            <div class="row">
+                <div class="one-third column">
+                    <input type="checkbox" name="ignore_settings-ignore_dir_list" id="ignore_settings-ignore_dir_list" value="true" checked onclick="save_setting('IGNORE_SETTINGS', 'ignore_dir_list', document.getElementById('ignore_settings-ignore_dir_list').checked)">
+                    <label for="ignore_settings-ignore_dir_list">Ignore Directory Name List</label>
+                    <br />
+                    <label for="ignore_settings-dir_ignore_list">Directory Name Ignore List: </label>
+                    <select name="ignore_settings-dir_ignore_list" id="ignore_settings-dir_ignore_list" multiple></select>
+                    <button class="items" id="dir_ignore_list_add" name="dir_ignore_list_add" onclick="add_ignored_directory()">Add</button>
+                    <button class="items" id="dir_ignore_list_delete" name="dir_ignore_list_delete" onclick="delete_ignored_directory()">Delete</button>
+                </div>
+                <div class="one-third column">
+                    <input type="checkbox" name="ignore_settings-ignore_file_ext_list" id="ignore_settings-ignore_file_ext_list" value="true" checked onclick="save_setting('IGNORE_SETTINGS', 'ignore_file_ext_list', document.getElementById('ignore_settings-ignore_file_ext_list').checked)">
+                    <label for="ignore_settings-ignore_file_ext_list">Ignore File Extension List</label>
+                    <br />
+                    <label for="ignore_settings-file_ext_ignore_list">File Extension Ignore List: </label>
+                    <select name="ignore_settings-file_ext_ignore_list" id="ignore_settings-file_ext_ignore_list" multiple></select>
+                    <button class="items" id="file_ext_ignore_list_add" name="file_ext_ignore_list_add" onclick="add_ignored_file_ext()">Add</button>
+                    <button class="items" id="file_ext_ignore_list_delete" name="file_ext_ignore_list_delete" onclick="delete_ignored_file_ext()">Delete</button>
+                </div>
+                <div class="one-third column">
+                    <input type="checkbox" name="ignore_settings-ignore_file_list" id="ignore_settings-ignore_file_list" value="true" checked onclick="save_setting('IGNORE_SETTINGS', 'ignore_file_list', document.getElementById('ignore_settings-ignore_file_list').checked)">
+                    <label for="ignore_settings-file_ignore_list">Ignore File Name List</label>
+                    <br />
+                    <label for="ignore_settings-file_ignore_list">File Name Ignore List: </label>
+                    <select name="ignore_settings-file_ignore_list" id="ignore_settings-file_ignore_list" multiple></select>
+                    <button class="items" id="file_ignore_list_add" name="file_ignore_list_add" onclick="add_ignored_file_name()">Add</button>
+                    <button class="items" id="file_ignore_list_delete" name="file_ignore_list_delete" onclick="delete_ignored_file_name()">Delete</button>
+                </div>
+            </div>
+            <hr />
+            <h2>Delete Settings</h2>
+            <div class="row">
+                <div class="one-third column">
+                    <input type="checkbox" name="delete_settings-delete_unwanted_dirs" id="delete_settings-delete_unwanted_dirs" value="true" checked onclick="save_setting('DELETE_SETTINGS', 'delete_unwanted_dirs', document.getElementById('delete_settings-delete_unwanted_dirs').checked)">
+                    <label for="delete_settings-delete_unwanted_dirs">Delete Directory Name List</label>
+                    <br />
+                    <label for="delete_settings-unwanted_dirs_list">Directory Name Delete List: </label>
+                    <select name="delete_settings-unwanted_dirs_list" id="delete_settings-unwanted_dirs_list" multiple></select>
+                    <button class="items" id="unwanted_dirs_list_add" name="unwanted_dirs_list_add" onclick="add_unwanted_dirs()">Add</button>
+                    <button class="items" id="unwanted_dirs_list_delete" name="unwanted_dirs_list_delete" onclick="delete_unwanted_dirs()">Delete</button>
+                </div>
+                <div class="one-third column">
+                    <input type="checkbox" name="delete_settings-delete_unwanted_file_ext" id="delete_settings-delete_unwanted_file_ext" value="true" checked onclick="save_setting('DELETE_SETTINGS', 'delete_unwanted_file_ext', document.getElementById('delete_settings-delete_unwanted_file_ext').checked)">
+                    <label for="delete_settings-delete_unwanted_dirs">Delete File Extension List</label>
+                    <br />
+                    <label for="delete_settings-unwanted_file_ext_list">File Extension Delete List: </label>
+                    <select name="delete_settings-unwanted_file_ext_list" id="delete_settings-unwanted_file_ext_list" multiple></select>
+                    <button class="items" id="unwanted_file_ext_list_add" name="unwanted_file_ext_list_add" onclick="add_unwanted_file_ext()">Add</button>
+                    <button class="items" id="unwanted_file_ext_list_delete" name="unwanted_file_ext_list_delete" onclick="delete_unwanted_file_ext()">Delete</button>
+                </div>
+                <div class="one-third column">
+                    <input type="checkbox" name="delete_settings-delete_unwanted_files" id="delete_settings-delete_unwanted_files" value="true" checked onclick="save_setting('DELETE_SETTINGS', 'delete_unwanted_files', document.getElementById('delete_settings-delete_unwanted_files').checked)">
+                    <label for="delete_settings-delete_unwanted_files">Delete File Name List</label>
+                    <br />
+                    <label for="delete_settings-unwanted_files_list">File Name Delete List: </label>
+                    <select name="delete_settings-unwanted_files_list" id="delete_settings-unwanted_files_list" multiple></select>
+                    <button class="items" id="unwanted_files_list_add" name="unwanted_files_list_add" onclick="add_unwanted_files()">Add</button>
+                    <button class="items" id="unwanted_files_list_delete" name="unwanted_files_list_delete" onclick="delete_unwanted_files_list()">Delete</button>
+                </div>
+            </div>
+            <hr />
+            <h2>Replace Settings</h2>
+            Under Construction...
+            <div class="row">
+                <div class="one-half column">
+                Replace:
+                </div>
+                <div class="one-half column">
+                With:
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>

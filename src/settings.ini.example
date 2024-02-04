@@ -1,0 +1,30 @@
+[MAIN]
+debug_mode = False
+dry_run = True
+working_dir = C:/
+recursive = True
+capitalize_words_in_files = False
+capitalize_words_in_dirs = False
+
+[IGNORE_SETTINGS]
+ignore_dir_list = False
+dir_ignore_list = 
+ignore_file_ext_list = True
+file_ext_ignore_list = .rar,.r00,.r01,.r02,.r03,.r04,.r05,.r06,.r07,.r08,.r09,.r10,.r11,.r12,.r13,.r14,.r15,.r16,.r17,.r18,.r19,.r20,.r21,.r22,.r23,.r24,.r25,.r26,.r27,.r28,.r29,.r30
+ignore_file_list = True
+file_ignore_list = desktop.ini
+delete_unwanted_files = True
+
+[DELETE_SETTINGS]
+delete_unwanted_dirs = False
+unwanted_dirs_list = 
+delete_unwanted_file_ext = True
+unwanted_file_ext_list = .doc,.docx,.rtf,.mp3,.pdf
+delete_unwanted_files = False
+unwanted_files_list = 
+
+[REPLACE_SETTINGS]
+file_word_replace_list = {'':''}
+dir_word_replace_list = {'Midi':'MIDI','_':' '}
+after_clean_fixes = {'___':' ','Fx':'FX'}
+

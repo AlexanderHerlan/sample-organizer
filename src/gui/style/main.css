@@ -1,0 +1,38 @@
+body {
+    background-color: #1F1F21;
+    color: #ffffff;
+    font-family: 'Lucida Grande', Arial, sans-serif;
+}
+.container {
+  padding: 0 0px;
+}
+
+#main-working_dir {
+    width: 78%;
+}
+select {
+    vertical-align: top;
+    height: 144px;
+    width: 100%;
+    font-family: 'Lucida Grande', Arial, sans-serif;
+    outline: 0;
+    background: #FFF;
+    color: #000;
+    border: 1px solid #000000;
+    padding: 4px;
+    border-radius: 2px;
+}
+label {
+    display: inline-block;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+input[type="checkbox"] {
+    margin-right: 8px;
+}
+.button, button, input[type="submit"], input[type="reset"], input[type="button"] {
+    padding: 0 10px;
+}
+h1 {
+    text-align: center;
+}
