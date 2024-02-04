@@ -15,7 +15,7 @@ ModuleNotFoundError: No module named 'bottle.ext.websocket'
 ```
 I have tried the first workaround described in the stackoverflow above, but unfortunately it did not work.
 
-I had to manually go into my projects virtualenv folder, and modify the Lib\site-packages\eel\__init__.py file as described.
+I had to manually go into my projects virtualenv folder, and modify the Lib\site-packages\eel\_\_init\_\_.py file as described.
 
 replacing `import bottle.ext.websocket as wbs` with `import bottle_websocket as wbs`
 
