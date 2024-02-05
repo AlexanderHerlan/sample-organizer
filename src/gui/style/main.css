@@ -10,6 +10,9 @@ body {
 #main-working_dir {
     width: 78%;
 }
+table {
+    margin-bottom: 5px;
+}
 select {
     vertical-align: top;
     height: 144px;
@@ -69,4 +72,13 @@ h1 {
 }
 .replace_table > tfoot button.replace_add {
     background-color: green;
+}
+.replace_update {
+    width: 99%;
+    background-color: #1e4fbd !important;
+    color: #FFFFFF !important;
+    font-size: 21px !important;
+    font-weight: normal !important;
+    margin-left: 4px;
+    margin-right: 8px;
 }

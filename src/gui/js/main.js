@@ -327,6 +327,18 @@ function render_replace_table(table_name, table_json) {
     }
 }
 
+function update_replace_table(table_name) {
+    let table_id = "replace_settings-" + table_name
+    let update_json = "";
+    $('#' + table_id + ' tbody tr').each(function () {
+        let replace_target = $('td:eq(0) input',this)[0].value;
+        let replace_result = $('td:eq(1) input',this)[0].value;
+        update_json = update_json + '"' + replace_target + '":"' + replace_result + '",'
+    });
+    update_json = "{" + update_json.slice(0, -1) + "}"
+    save_setting('REPLACE_SETTINGS', table_name, update_json);
+}
+
 function load_configuration(config_file) {
     eel.load_configuration(config_file);
 }
