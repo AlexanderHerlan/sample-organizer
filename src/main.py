@@ -17,7 +17,7 @@ for m in get_monitors():
 MAIN_WINDOW_SIZE = (800, 600)
 MAIN_WINDOW_POSITION = (0,0)
 WORKING_DIRECTORY = ""
-CONFIG_FILE = "settings.ini"
+SETTINGS_FILE = "settings.ini"
 
 logger.add("debug_1.log", rotation="500 MB")
 logger.info("Initializing application...")
@@ -86,8 +86,8 @@ def create_settings(settings_file):
 
 @eel.expose
 def load_settings_file(settings_file):
-    global CONFIG_FILE
-    CONFIG_FILE = settings_file
+    global SETTINGS_FILE
+    SETTINGS_FILE = settings_file
     config = configparser.ConfigParser()
     if os.path.isfile('./' + settings_file):
         config.read(settings_file)
@@ -106,16 +106,16 @@ def load_settings_file(settings_file):
 
 @eel.expose
 def save_settings(section, key, value):
-    global CONFIG_FILE
+    global SETTINGS_FILE
     section = str(section)
     key = str(key)
     value = str(value)
     config = configparser.ConfigParser()
-    config.read(CONFIG_FILE)
+    config.read(SETTINGS_FILE)
     config.set(section, key, value)
-    with open(CONFIG_FILE, 'w') as configfile:
+    with open(SETTINGS_FILE, 'w') as configfile:
         config.write(configfile)
-        logger.info(CONFIG_FILE + ': [' + section + '] "' + key + '" value updated to "' + value + '"')
+        logger.info(SETTINGS_FILE + ': [' + section + '] "' + key + '" value updated to "' + value + '"')
 
 
 @eel.expose
@@ -135,7 +135,6 @@ def set_working_directory():
 
 # Launch example in Microsoft Edge only on Windows 10 and above
 if sys.platform in ['win32', 'win64'] and int(platform.release()) >= 10:
-    load_settings_file('settings.ini')
     eel.start('index.html', mode='chrome', size=MAIN_WINDOW_SIZE, position=init_window_position())
 else:
     raise EnvironmentError('Error: System is not Windows 10 or above')

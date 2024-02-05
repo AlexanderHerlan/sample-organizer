@@ -4,12 +4,13 @@
 
 /**
 * Logs any string, number or object to the console with custom prefix to be able to filter by
-* @param {mixed} msg
+* @param {(Object|string|number)} msg
 * @param {String} filter_prefix
 * @return {string} output
 */
 function mylog(msg, filter_prefix = "") {
     let output = "";
+
     if($('#main-debug_mode').prop( "checked" )) {
         filter_prefix = "JavaScript: "
     }
@@ -91,16 +92,16 @@ eel.expose(set_setting_value);
 function set_setting_value(element_id, value) {
     let element =  document.getElementById(element_id);
     if (typeof(element) != 'undefined' && element != null) {
-        if(element.type == 'checkbox') {
+        if(element.type === 'checkbox') {
             element.value = /^true$/i.test(value);
             element.checked = /^true$/i.test(value);
-        } else if (element.type == 'select-multiple') {
+        } else if (element.type === 'select-multiple') {
             for (let directories of value.split(',')) {
-                if (directories.trim() != "") {
+                if (directories.trim() !== "") {
                     element.add(new Option(directories, directories))
                 }
             }
-        } else if (element.tagName == 'TABLE') {
+        } else if (element.tagName === 'TABLE') {
             render_replace_table(element_id, value);
         } else {
             element.value = value;
@@ -108,8 +109,6 @@ function set_setting_value(element_id, value) {
         mylog(element_id + " has been set to: '" + value + "'");
     }
 }
-
-
 
 
 /*=====================================================================================================================\
@@ -125,7 +124,7 @@ function select_directory() {
 }
 
 function save_directory() {
-    eel.save_settings('MAIN', 'working_dir', $('#main-working_dir').val())
+    save_setting('MAIN', 'working_dir', $('#main-working_dir').val())
 }
 
 function save_setting(section, key, value) {
@@ -302,7 +301,6 @@ function add_unwanted_file_ext() {
 function delete_unwanted_file_ext() {
     let del_confirm = false;
     let file_ext_delete_list_id = '#delete_settings-unwanted_file_ext_list';
-    let delete_file_ext_list = $(file_ext_delete_list_id).children();
     let delete_file_ext_list_selected = $(file_ext_delete_list_id + ' :selected');
     let selected_ext_list_readable = select_values_to_string(file_ext_delete_list_id, 1, 1);
 
@@ -338,7 +336,6 @@ function add_unwanted_files() {
 function delete_unwanted_files_list() {
     let del_confirm = false;
     let file_name_delete_list_id = '#delete_settings-unwanted_files_list';
-    let delete_file_name_list = $(file_name_delete_list_id).children();
     let delete_file_name_list_selected = $(file_name_delete_list_id + ' :selected');
     let selected_name_list_readable = select_values_to_string(file_name_delete_list_id, 1, 1);
 
@@ -365,6 +362,7 @@ function render_replace_table(table_name, table_json) {
     let table_json_object = JSON.parse(table_json);
     let row = 0;
 
+    $('#' + table_name + ' tbody').children().remove();
     for (let prop in table_json_object) {
         $(`<tr>
                <td><input type="text" id="replace_target_` + row + `" value="` + prop + `"></td>
