@@ -20,9 +20,10 @@
                 <h2>Main Settings</h2>
                 <label for="main-working_dir">Choose where your samples are located:</label>
                 <br />
-                <input type="text" id="main-working_dir" onclick="select_directory()">
-                <button class="items" id="directory_picker" name="directory_picker" onclick="select_directory()">Choose Directory</button>
-
+                <input type="text" id="main-working_dir">
+                <button class="button_save" id="save_directory_button" name="save_directory_button" onclick="save_directory()">Save</button>
+                <button class="button_action button_action" id="directory_picker_button" name="directory_picker" onclick="select_directory()">Browse...</button>
+                <br />
                 <input type="checkbox" name="main-debug_mode" id="main-debug_mode" value="true" checked onclick="save_setting('MAIN', 'debug_mode', document.getElementById('main-debug_mode').checked)">
                 <label for="main-debug_mode">Debug Mode</label>
                 <br />
@@ -50,8 +51,8 @@
                     <br />
                     <label for="ignore_settings-dir_ignore_list">Directory Name Ignore List: </label>
                     <select name="ignore_settings-dir_ignore_list" id="ignore_settings-dir_ignore_list" multiple></select>
-                    <button class="items" id="dir_ignore_list_add" name="dir_ignore_list_add" onclick="add_ignored_directory()">Add</button>
-                    <button class="items" id="dir_ignore_list_delete" name="dir_ignore_list_delete" onclick="delete_ignored_directory()">Delete</button>
+                    <button class="button_add" id="dir_ignore_list_add" name="dir_ignore_list_add" onclick="add_ignored_directory()">Add</button>
+                    <button class="button_delete" id="dir_ignore_list_delete" name="dir_ignore_list_delete" onclick="delete_ignored_directory()">Delete</button>
                 </div>
                 <div class="one-third column">
                     <input type="checkbox" name="ignore_settings-ignore_file_ext_list" id="ignore_settings-ignore_file_ext_list" value="true" checked onclick="save_setting('IGNORE_SETTINGS', 'ignore_file_ext_list', document.getElementById('ignore_settings-ignore_file_ext_list').checked)">
@@ -59,8 +60,8 @@
                     <br />
                     <label for="ignore_settings-file_ext_ignore_list">File Extension Ignore List: </label>
                     <select name="ignore_settings-file_ext_ignore_list" id="ignore_settings-file_ext_ignore_list" multiple></select>
-                    <button class="items" id="file_ext_ignore_list_add" name="file_ext_ignore_list_add" onclick="add_ignored_file_ext()">Add</button>
-                    <button class="items" id="file_ext_ignore_list_delete" name="file_ext_ignore_list_delete" onclick="delete_ignored_file_ext()">Delete</button>
+                    <button class="button_add" id="file_ext_ignore_list_add" name="file_ext_ignore_list_add" onclick="add_ignored_file_ext()">Add</button>
+                    <button class="button_delete" id="file_ext_ignore_list_delete" name="file_ext_ignore_list_delete" onclick="delete_ignored_file_ext()">Delete</button>
                 </div>
                 <div class="one-third column">
                     <input type="checkbox" name="ignore_settings-ignore_file_list" id="ignore_settings-ignore_file_list" value="true" checked onclick="save_setting('IGNORE_SETTINGS', 'ignore_file_list', document.getElementById('ignore_settings-ignore_file_list').checked)">
@@ -68,8 +69,8 @@
                     <br />
                     <label for="ignore_settings-file_ignore_list">File Name Ignore List: </label>
                     <select name="ignore_settings-file_ignore_list" id="ignore_settings-file_ignore_list" multiple></select>
-                    <button class="items" id="file_ignore_list_add" name="file_ignore_list_add" onclick="add_ignored_file_name()">Add</button>
-                    <button class="items" id="file_ignore_list_delete" name="file_ignore_list_delete" onclick="delete_ignored_file_name()">Delete</button>
+                    <button class="button_add" id="file_ignore_list_add" name="file_ignore_list_add" onclick="add_ignored_file_name()">Add</button>
+                    <button class="button_delete" id="file_ignore_list_delete" name="file_ignore_list_delete" onclick="delete_ignored_file_name()">Delete</button>
                 </div>
             </div>
 
@@ -83,8 +84,8 @@
                     <br />
                     <label for="delete_settings-unwanted_dirs_list">Directory Name Delete List: </label>
                     <select name="delete_settings-unwanted_dirs_list" id="delete_settings-unwanted_dirs_list" multiple></select>
-                    <button class="items" id="unwanted_dirs_list_add" name="unwanted_dirs_list_add" onclick="add_unwanted_dirs()">Add</button>
-                    <button class="items" id="unwanted_dirs_list_delete" name="unwanted_dirs_list_delete" onclick="delete_unwanted_dirs()">Delete</button>
+                    <button class="button_add" id="unwanted_dirs_list_add" name="unwanted_dirs_list_add" onclick="add_unwanted_dirs()">Add</button>
+                    <button class="button_delete" id="unwanted_dirs_list_delete" name="unwanted_dirs_list_delete" onclick="delete_unwanted_dirs()">Delete</button>
                 </div>
                 <div class="one-third column">
                     <input type="checkbox" name="delete_settings-delete_unwanted_file_ext" id="delete_settings-delete_unwanted_file_ext" value="true" checked onclick="save_setting('DELETE_SETTINGS', 'delete_unwanted_file_ext', document.getElementById('delete_settings-delete_unwanted_file_ext').checked)">
@@ -92,8 +93,8 @@
                     <br />
                     <label for="delete_settings-unwanted_file_ext_list">File Extension Delete List: </label>
                     <select name="delete_settings-unwanted_file_ext_list" id="delete_settings-unwanted_file_ext_list" multiple></select>
-                    <button class="items" id="unwanted_file_ext_list_add" name="unwanted_file_ext_list_add" onclick="add_unwanted_file_ext()">Add</button>
-                    <button class="items" id="unwanted_file_ext_list_delete" name="unwanted_file_ext_list_delete" onclick="delete_unwanted_file_ext()">Delete</button>
+                    <button class="button_add" id="unwanted_file_ext_list_add" name="unwanted_file_ext_list_add" onclick="add_unwanted_file_ext()">Add</button>
+                    <button class="button_delete" id="unwanted_file_ext_list_delete" name="unwanted_file_ext_list_delete" onclick="delete_unwanted_file_ext()">Delete</button>
                 </div>
                 <div class="one-third column">
                     <input type="checkbox" name="delete_settings-delete_unwanted_files" id="delete_settings-delete_unwanted_files" value="true" checked onclick="save_setting('DELETE_SETTINGS', 'delete_unwanted_files', document.getElementById('delete_settings-delete_unwanted_files').checked)">
@@ -101,8 +102,8 @@
                     <br />
                     <label for="delete_settings-unwanted_files_list">File Name Delete List: </label>
                     <select name="delete_settings-unwanted_files_list" id="delete_settings-unwanted_files_list" multiple></select>
-                    <button class="items" id="unwanted_files_list_add" name="unwanted_files_list_add" onclick="add_unwanted_files()">Add</button>
-                    <button class="items" id="unwanted_files_list_delete" name="unwanted_files_list_delete" onclick="delete_unwanted_files_list()">Delete</button>
+                    <button class="button_add" id="unwanted_files_list_add" name="unwanted_files_list_add" onclick="add_unwanted_files()">Add</button>
+                    <button class="button_delete" id="unwanted_files_list_delete" name="unwanted_files_list_delete" onclick="delete_unwanted_files_list()">Delete</button>
                 </div>
             </div>
 
@@ -126,13 +127,13 @@
                         </tbody>
                         <tfoot>
                             <tr class="replace_input">
-                                <td><input type="text" id="file_word_replace_list_target_add"></td>
-                                <td><input type="text" id="file_word_replace_list_destination_add"></td>
-                                <td class="replace_controls"><button type="button" class="replace_add">+</button></td>
+                                <td><input type="text" id="replace_settings-file_word_replace_list_target_add"></td>
+                                <td><input type="text" id="replace_settings-file_word_replace_list_destination_add"></td>
+                                <td class="replace_controls"><button type="button" class="button_add" onclick="add_to_replace_table('replace_settings-file_word_replace_list')">+</button></td>
                             </tr>
                         </tfoot>
                     </table>
-                    <input type="button" class="replace_update" name="file_word_replace_list_update" id="file_word_replace_list_update" value="Update All File Word Replacements" onclick="update_replace_table('file_word_replace_list');">
+                    <input type="button" class="button_update replace_button_update" name="file_word_replace_list_update" id="file_word_replace_list_update" value="Update All File Word Replacements" onclick="update_replace_table('replace_settings-file_word_replace_list');">
                 </div>
 
                 <div id="replace_settings_dir_word_replace" class="row">
@@ -152,11 +153,11 @@
                             <tr class="replace_input">
                                 <td><input type="text" id="dir_word_replace_list_target_add"></td>
                                 <td><input type="text" id="dir_word_replace_list_destination_add"></td>
-                                <td class="replace_controls"><button type="button" class="replace_add">+</button></td>
+                                <td class="replace_controls"><button type="button" class="button_add" onclick="add_to_replace_table('replace_settings-dir_word_replace_list')">+</button></td>
                             </tr>
                         </tfoot>
                     </table>
-                    <input type="button" class="replace_update" name="dir_word_replace_list_update" id="dir_word_replace_list_update" value="Update All Directory Word Replacements" onclick="update_replace_table('dir_word_replace_list');">
+                    <input type="button" class="button_update replace_button_update" name="dir_word_replace_list_update" id="dir_word_replace_list_update" value="Update All Directory Word Replacements" onclick="update_replace_table('replace_settings-dir_word_replace_list');">
                 </div>
 
                 <div id="replace_settings_after_clean_fixes" class="row">
@@ -176,11 +177,11 @@
                             <tr class="replace_input">
                                 <td><input type="text" id="after_clean_fixes_target_add"></td>
                                 <td><input type="text" id="after_clean_fixes_destination_add"></td>
-                                <td class="replace_controls"><button type="button" class="replace_add">+</button></td>
+                                <td class="replace_controls"><button type="button" class="button_add" onclick="add_to_replace_table('replace_settings-after_clean_fixes')">+</button></td>
                             </tr>
                         </tfoot>
                     </table>
-                    <input type="button" class="replace_update" name="after_clean_fixes_update" id="after_clean_fixes_update" value="Update All Post Processing Fixes" onclick="update_replace_table('after_clean_fixes');">
+                    <input type="button" class="button_update replace_button_update" name="after_clean_fixes_update" id="after_clean_fixes_update" value="Update All Post Processing Fixes" onclick="update_replace_table('replace_settings-after_clean_fixes');">
                 </div>
             </div>
         </div>

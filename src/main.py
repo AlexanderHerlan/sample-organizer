@@ -39,7 +39,7 @@ def init_window_position():
     return h_window_center, v_window_center
 
 
-def create_configuration(config_file):
+def create_settings(settings_file):
     config = configparser.ConfigParser()
     # Create a default settings file
     logger.info("Creating config file.")
@@ -79,31 +79,38 @@ def create_configuration(config_file):
     config['REPLACE_SETTINGS']['dir_word_replace_list'] = "{'dir_word_replace1':'dir_word_replace2', 'dir_word_replace3':'dir_word_replace4', 'dir_word_replace4':'dir_word_replace5'}"
     config['REPLACE_SETTINGS']['after_clean_fixes'] = "{'after_clean_fixes1':'after_clean_fixes2', 'after_clean_fixes3':'after_clean_fixes4', 'after_clean_fixes4':'after_clean_fixes'}"
 
-    with open(config_file, 'w') as configfile:
+    with open(settings_file, 'w') as configfile:
         config.write(configfile)
-        logger.info('... default "' + config_file + '" has been created.')
+        logger.info('... default "' + settings_file + '" has been created.')
 
 
 @eel.expose
-def load_configuration(config_file):
+def load_settings_file(settings_file):
+    global CONFIG_FILE
+    CONFIG_FILE = settings_file
     config = configparser.ConfigParser()
-    if os.path.isfile('./' + config_file):
-        config.read(config_file)
+    if os.path.isfile('./' + settings_file):
+        config.read(settings_file)
         # Load existing settings file
-        logger.info('Loading config file "' + config_file + '"...')
+        logger.info('Loading settings file "' + settings_file + '"...')
         for each_section in config.sections():
             for (each_key, each_val) in config.items(each_section):
                 eel.set_setting_value(each_section.lower() + "-" + each_key, each_val)
-                logger.info("loading config setting: " + each_key + ": " + each_val)
-        logger.info('... Done loading existing "' + config_file + '" file.')
+                logger.info("loading setting: " + each_key + ": " + each_val)
+        logger.info('... Done loading existing "' + settings_file + '" file.')
     else:
         logger.warning("No config file found")
-        create_configuration(config_file)
-        load_configuration(config_file)
+        create_settings(settings_file)
+        load_settings_file(settings_file)
 
 
 @eel.expose
-def save_config_setting(section, key, value):
+def refresh_specific_setting(setting_id):
+    logger.info(section + setting)
+
+
+@eel.expose
+def save_settings(section, key, value):
     global CONFIG_FILE
     section = str(section)
     key = str(key)
@@ -122,14 +129,18 @@ def set_working_directory():
     root = tkinter.Tk()
     root.attributes("-topmost", True)
     root.withdraw()
-    WORKING_DIRECTORY = filedialog.askdirectory()
+    print(WORKING_DIRECTORY)
+    WORKING_DIRECTORY = filedialog.askdirectory(initialdir=WORKING_DIRECTORY,
+                                                title="Select the location of your samples")
+    print(WORKING_DIRECTORY)
     if WORKING_DIRECTORY.strip() != "":
-        save_config_setting('MAIN', 'working_dir', WORKING_DIRECTORY)
+        save_settings('MAIN', 'working_dir', WORKING_DIRECTORY)
         eel.set_setting_value('main-working_dir', WORKING_DIRECTORY)
 
 
 # Launch example in Microsoft Edge only on Windows 10 and above
 if sys.platform in ['win32', 'win64'] and int(platform.release()) >= 10:
+    load_settings_file('settings.ini')
     eel.start('index.html', mode='chrome', size=MAIN_WINDOW_SIZE, position=init_window_position())
 else:
     raise EnvironmentError('Error: System is not Windows 10 or above')

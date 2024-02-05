@@ -3,16 +3,11 @@ body {
     color: #ffffff;
     font-family: 'Lucida Grande', Arial, sans-serif;
 }
-.container {
-  padding: 0 0px;
-}
 
-#main-working_dir {
-    width: 78%;
-}
 table {
     margin-bottom: 5px;
 }
+
 select {
     vertical-align: top;
     height: 144px;
@@ -25,19 +20,32 @@ select {
     padding: 4px;
     border-radius: 2px;
 }
+
 label {
     display: inline-block;
     margin-top: 4px;
     margin-bottom: 4px;
 }
+
 input[type="checkbox"] {
     margin-right: 8px;
 }
+
 .button, button, input[type="submit"], input[type="reset"], input[type="button"] {
     padding: 0 10px;
+    font-size: 16px;
 }
+
 h1 {
     text-align: center;
+}
+
+#main-working_dir {
+    width: 72%;
+}
+
+.container {
+  padding: 0 0px;
 }
 
 .replace_table {
@@ -48,6 +56,7 @@ h1 {
     padding: 4px 4px;
     border-bottom: 1px solid #555;
 }
+
 .replace_table input {
     margin-bottom: 2px;
     margin-top: 2px;
@@ -55,30 +64,70 @@ h1 {
     width: 100%;
     background-color: #FFF;
 }
+
 .replace_table > tfoot input {
     background-color: #FFF;
 }
+
 .replace_table td.replace_controls {
     width:42px;
 }
+
+#save_directory_button {
+    width: 10%;
+}
+#directory_picker_button {
+    width: 16%;
+}
+
 .replace_table button {
     margin-bottom: 0px;
     width: 42px;
     font-size: 30px;
     color: #FFFFFF;
 }
-.replace_table > tbody button.replace_delete {
-    background-color: firebrick;
-}
-.replace_table > tfoot button.replace_add {
-    background-color: green;
-}
-.replace_update {
-    width: 99%;
+
+.select_directory_button {
     background-color: #1e4fbd !important;
     color: #FFFFFF !important;
+    font-size: 18px !important;
+    font-weight: normal !important;
+    margin-left: 5px;
+}
+
+.button_add {
+    background-color: green !important;
+    color: white !important;;
+}
+
+.button_delete {
+    background-color: firebrick !important;
+    color: white !important;;
+}
+
+.button_update {
+    background-color: #1e4fbd !important;
+    color: white !important;;
+}
+
+.button_save {
+    background-color: darkgreen;
+    color: white !important;;
+}
+
+.button_action {
+    background-color: #465464 !important;;
+    color: white !important;
+}
+
+.replace_button_update {
+    width: 99%;
     font-size: 21px !important;
     font-weight: normal !important;
     margin-left: 4px;
     margin-right: 8px;
+}
+
+#ignore_settings .button_add, #ignore_settings .button_delete, #delete_settings .button_add, #delete_settings .button_delete  {
+    width: 49%;
 }
