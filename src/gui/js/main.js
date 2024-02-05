@@ -125,7 +125,7 @@ function select_directory() {
 }
 
 function save_directory() {
-    eel.save_settings('MAIN', 'working_dir', WORKING_DIRECTORY)
+    eel.save_settings('MAIN', 'working_dir', $('#main-working_dir').val())
 }
 
 function save_setting(section, key, value) {

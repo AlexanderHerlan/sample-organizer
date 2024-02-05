@@ -124,10 +124,10 @@ def set_working_directory():
     root = tkinter.Tk()
     root.attributes("-topmost", True)
     root.withdraw()
-    print(WORKING_DIRECTORY)
+
     WORKING_DIRECTORY = filedialog.askdirectory(initialdir=WORKING_DIRECTORY,
                                                 title="Select the location of your samples")
-    print(WORKING_DIRECTORY)
+
     if WORKING_DIRECTORY.strip() != "":
         save_settings('MAIN', 'working_dir', WORKING_DIRECTORY)
         eel.set_setting_value('main-working_dir', WORKING_DIRECTORY)
