@@ -105,11 +105,6 @@ def load_settings_file(settings_file):
 
 
 @eel.expose
-def refresh_specific_setting(setting_id):
-    logger.info(section + setting)
-
-
-@eel.expose
 def save_settings(section, key, value):
     global CONFIG_FILE
     section = str(section)

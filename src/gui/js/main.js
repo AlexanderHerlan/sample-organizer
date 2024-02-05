@@ -125,7 +125,7 @@ function select_directory() {
 }
 
 function save_directory() {
-    eel.save_settings('MAIN', 'working_dir', $('#main-working_dir').val());
+    eel.save_settings('MAIN', 'working_dir', WORKING_DIRECTORY)
 }
 
 function save_setting(section, key, value) {
@@ -381,6 +381,7 @@ function render_replace_table(table_name, table_json) {
 function update_replace_table(table_id) {
     let settings_name = table_id.replace("replace_settings-", "");
     let update_json = "";
+    let table_row = '#' + table_id + ' tbody';
     $('#' + table_id + ' tbody tr').each(function () {
         let replace_target = $('td:eq(0) input',this)[0].value;
         let replace_result = $('td:eq(1) input',this)[0].value;
@@ -388,6 +389,8 @@ function update_replace_table(table_id) {
     });
     update_json = "{" + update_json.slice(0, -1) + "}"
     save_setting('REPLACE_SETTINGS', settings_name, update_json);
+    $(table_row).children().remove();
+    render_replace_table(table_id, update_json);
 }
 
 function add_to_replace_table(table_id) {
@@ -422,8 +425,6 @@ function delete_from_replace_table(table_id, row) {
         mylog("Deleting replace rule " + table_row + " - " + row + ": " + target_value + " -> " + result_value);
         $(table_row)[row].remove();
         update_replace_table(table_id);
-        //$(table_row).remove();
-        eel.refresh_specific_setting(table_id);
     } else { mylog(target_value + " -> " + result_value + " Replace table delete operation aborted. ") }
 }
 
