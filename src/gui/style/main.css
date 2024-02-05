@@ -62,11 +62,9 @@ h1 {
     margin-top: 2px;
     padding: 2px 2px;
     width: 100%;
-    background-color: #FFF;
 }
-
 .replace_table > tfoot input {
-    background-color: #FFF;
+    background-color: #bfffbf;
 }
 
 .replace_table td.replace_controls {

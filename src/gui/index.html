@@ -119,7 +119,7 @@
                             <tr>
                                 <th>Replace this</th>
                                 <th>With this</th>
-                                <th>*</th>
+                                <th> </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -127,15 +127,15 @@
                         </tbody>
                         <tfoot>
                             <tr class="replace_input">
-                                <td><input type="text" id="replace_settings-file_word_replace_list_target_add"></td>
-                                <td><input type="text" id="replace_settings-file_word_replace_list_destination_add"></td>
+                                <td><input type="text" class="input_text" id="replace_settings-file_word_replace_list_target_add"></td>
+                                <td><input type="text" class="input_text" id="replace_settings-file_word_replace_list_destination_add"></td>
                                 <td class="replace_controls"><button type="button" class="button_add" onclick="add_to_replace_table('replace_settings-file_word_replace_list')">+</button></td>
                             </tr>
                         </tfoot>
                     </table>
                     <input type="button" class="button_update replace_button_update" name="file_word_replace_list_update" id="file_word_replace_list_update" value="Update All File Word Replacements" onclick="update_replace_table('replace_settings-file_word_replace_list');">
                 </div>
-
+                <hr/>
                 <div id="replace_settings_dir_word_replace" class="row">
                     <h3>Directory Word Replace</h3>
                     <table id="replace_settings-dir_word_replace_list" class="replace_table">
@@ -143,7 +143,7 @@
                             <tr>
                                 <th>Replace this</th>
                                 <th>With this</th>
-                                <th>*</th>
+                                <th> </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -151,15 +151,15 @@
                         </tbody>
                         <tfoot>
                             <tr class="replace_input">
-                                <td><input type="text" id="dir_word_replace_list_target_add"></td>
-                                <td><input type="text" id="dir_word_replace_list_destination_add"></td>
+                                <td><input type="text" class="input_text" id="replace_settings-dir_word_replace_list_target_add"></td>
+                                <td><input type="text" class="input_text" id="replace_settings-dir_word_replace_list_destination_add"></td>
                                 <td class="replace_controls"><button type="button" class="button_add" onclick="add_to_replace_table('replace_settings-dir_word_replace_list')">+</button></td>
                             </tr>
                         </tfoot>
                     </table>
                     <input type="button" class="button_update replace_button_update" name="dir_word_replace_list_update" id="dir_word_replace_list_update" value="Update All Directory Word Replacements" onclick="update_replace_table('replace_settings-dir_word_replace_list');">
                 </div>
-
+                <hr/>
                 <div id="replace_settings_after_clean_fixes" class="row">
                     <h3>Post Processing Fixes</h3>
                     <table id="replace_settings-after_clean_fixes" class="replace_table">
@@ -167,7 +167,7 @@
                             <tr>
                                 <th>Replace this</th>
                                 <th>With this</th>
-                                <th>*</th>
+                                <th> </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -175,8 +175,8 @@
                         </tbody>
                         <tfoot>
                             <tr class="replace_input">
-                                <td><input type="text" id="after_clean_fixes_target_add"></td>
-                                <td><input type="text" id="after_clean_fixes_destination_add"></td>
+                                <td><input type="text" class="input_text" id="replace_settings-after_clean_fixes_target_add"></td>
+                                <td><input type="text" class="input_text" id="replace_settings-after_clean_fixes_destination_add"></td>
                                 <td class="replace_controls"><button type="button" class="button_add" onclick="add_to_replace_table('replace_settings-after_clean_fixes')">+</button></td>
                             </tr>
                         </tfoot>

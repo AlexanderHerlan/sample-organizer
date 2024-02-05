@@ -412,8 +412,6 @@ function add_to_replace_table(table_id) {
 
 function delete_from_replace_table(table_id, row) {
     let css_row = parseInt(row) + 1;
-    mylog("row: " + row)
-    mylog("css_row: " + css_row);
     let table_row = '#' + table_id + ' tbody tr';
     let replace_target = "#replace_settings-file_word_replace_list tbody tr:nth-child("+ css_row +") td:nth-child(1) input";
     let replace_result = "#replace_settings-file_word_replace_list tbody tr:nth-child("+ css_row +") td:nth-child(2) input";
