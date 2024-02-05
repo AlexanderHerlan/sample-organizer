@@ -1,9 +1,18 @@
+function mylog(msg) {
+    if(typeof(msg) == 'string') {
+        console.log("Javascript: " + msg)
+    }
+    if(typeof(msg) == 'object') {
+        console.log("Javascript Object: " + JSON.stringify(msg));
+    }
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Functions that can be called from Python:
 eel.expose(set_directory);
 function set_directory(working_dir) {
-    console.log("Working Directory set to: '" + working_dir + "'");
+    mylog("Working Directory set to: '" + working_dir + "'");
     $("#main-working_dir").value = working_dir;
 }
 
@@ -16,14 +25,16 @@ function set_setting_value(element_id, value) {
             element.checked = /^true$/i.test(value);
         } else if (element.type == 'select-multiple') {
             for (let directories of value.split(',')) {
-                if(directories.trim() != "") {
+                if (directories.trim() != "") {
                     element.add(new Option(directories, directories))
                 }
             }
+        } else if (element.tagName == 'TABLE') {
+            render_replace_table(element_id, value);
         } else {
             element.value = value;
         }
-        console.log(element_id + " has been set to: '" + value + "'");
+        mylog(element_id + " has been set to: '" + value + "'");
     }
 }
 
@@ -40,7 +51,7 @@ function select_directory() {
 }
 
 function save_setting(section, key, value) {
-    console.log('settings.ini: [' + section + '] "' + key + '" value updated to "' + value + '"');
+    mylog('settings.ini: [' + section + '] "' + key + '" value updated to "' + value + '"');
     eel.save_config_setting(section, key, value);
 }
 
@@ -77,7 +88,7 @@ function values_to_string(object_id, selected = 0, readable = 0) {
 
         return settings_value_string;
     } else {
-        console.log('No object values to convert to string.');
+        mylog('No object values to convert to string.');
         return '';
     }
 }
@@ -304,6 +315,15 @@ function delete_unwanted_files_list() {
         }
     } else {
         alert("Please select at least one item to delete.");
+    }
+}
+
+function render_replace_table(table_name, table_json) {
+    let table_json_object = JSON.parse(table_json);
+    let row = 0;
+    for (let prop in table_json_object) {
+        $('<tr><td><input type="text" id="replace_target_' + row + '" value="' + prop + '"></td><td><input type="text" id="replace_result_' + row + '" value="' + table_json_object[prop] + '"></td><td class="replace_controls"><button type="button" class="replace_delete">X</button></td></tr>' ).appendTo('#' + table_name + ' tbody');
+        row++;
     }
 }
 

@@ -75,9 +75,9 @@ def create_configuration(config_file):
 
     # Replace Settings
     config['REPLACE_SETTINGS'] = {}
-    config['REPLACE_SETTINGS']['file_word_replace_list'] = "{'':''}"
-    config['REPLACE_SETTINGS']['dir_word_replace_list'] = "{'Midi':'MIDI','_':' '}"
-    config['REPLACE_SETTINGS']['after_clean_fixes'] = "{'___':' ','Fx':'FX'}"
+    config['REPLACE_SETTINGS']['file_word_replace_list'] = "{'file_word_replace1':'file_word_replace2', 'file_word_replace3':'file_word_replace4', 'file_word_replace4':'file_word_replace5'}"
+    config['REPLACE_SETTINGS']['dir_word_replace_list'] = "{'dir_word_replace1':'dir_word_replace2', 'dir_word_replace3':'dir_word_replace4', 'dir_word_replace4':'dir_word_replace5'}"
+    config['REPLACE_SETTINGS']['after_clean_fixes'] = "{'after_clean_fixes1':'after_clean_fixes2', 'after_clean_fixes3':'after_clean_fixes4', 'after_clean_fixes4':'after_clean_fixes'}"
 
     with open(config_file, 'w') as configfile:
         config.write(configfile)

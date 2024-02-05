@@ -36,3 +36,37 @@ input[type="checkbox"] {
 h1 {
     text-align: center;
 }
+
+.replace_table {
+    width: 100%;
+}
+
+.replace_table td, th {
+    padding: 4px 4px;
+    border-bottom: 1px solid #555;
+}
+.replace_table input {
+    margin-bottom: 2px;
+    margin-top: 2px;
+    padding: 2px 2px;
+    width: 100%;
+    background-color: #FFF;
+}
+.replace_table > tfoot input {
+    background-color: #FFF;
+}
+.replace_table td.replace_controls {
+    width:42px;
+}
+.replace_table button {
+    margin-bottom: 0px;
+    width: 42px;
+    font-size: 30px;
+    color: #FFFFFF;
+}
+.replace_table > tbody button.replace_delete {
+    background-color: firebrick;
+}
+.replace_table > tfoot button.replace_add {
+    background-color: green;
+}

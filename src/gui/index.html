@@ -103,16 +103,72 @@
             </div>
             <hr />
             <h2>Replace Settings</h2>
-            Under Construction...
+            <h3>File Word Replace</h3>
             <div class="row">
-                <div class="one-half column">
-                Replace:
-                </div>
-                <div class="one-half column">
-                With:
-                </div>
-            </div>
+                <table id="replace_settings-file_word_replace_list" class="replace_table">
+                    <thead>
+                        <tr>
+                            <th>Replace this</th>
+                            <th>With this</th>
+                            <th>*</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
+                    </tbody>
+                    <tfoot>
+                        <tr class="replace_input">
+                            <td><input type="text" id="file_word_replace_list_target_add"></td>
+                            <td><input type="text" id="file_word_replace_list_destination_add"></td>
+                            <td class="replace_controls"><button type="button" class="replace_add">+</button></td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            <h3>Directory Word Replace</h3>
+            <div class="row">
+                <table id="replace_settings-dir_word_replace_list" class="replace_table">
+                    <thead>
+                        <tr>
+                            <th>Replace this</th>
+                            <th>With this</th>
+                            <th>*</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                    <tfoot>
+                        <tr class="replace_input">
+                            <td><input type="text" id="dir_word_replace_list_target_add"></td>
+                            <td><input type="text" id="dir_word_replace_list_destination_add"></td>
+                            <td class="replace_controls"><button type="button" class="replace_add">+</button></td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            <h3>Post Processing Fixes</h3>
+            <div class="row">
+                <table id="replace_settings-after_clean_fixes" class="replace_table">
+                    <thead>
+                        <tr>
+                            <th>Replace this</th>
+                            <th>With this</th>
+                            <th>*</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                    <tfoot>
+                        <tr class="replace_input">
+                            <td><input type="text" id="after_clean_fixes_target_add"></td>
+                            <td><input type="text" id="after_clean_fixes_destination_add"></td>
+                            <td class="replace_controls"><button type="button" class="replace_add">+</button></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
         </div>
     </body>
 </html>
